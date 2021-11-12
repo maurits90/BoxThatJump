@@ -24,5 +24,10 @@ public class enemySpawner : MonoBehaviour
         }
         timer += Time.deltaTime;
     }
+
+    public void addEnemy()
+    {
+        maxTime *= 2;
+    }
     
 }

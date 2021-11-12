@@ -16,4 +16,9 @@ public class enemyScript : MonoBehaviour
     {
         transform.position += Vector3.left * speed * Time.deltaTime;
     }
+
+    public void addSpeed()
+    {
+        speed *= 2;
+    }
 }

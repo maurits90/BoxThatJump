@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class playerMovement : MonoBehaviour
 {
     public gameManager gm;
+    public enemyScript es;
+    public enemySpawner eSpawn;
     Rigidbody2D rb;
     public float jumpHeight;
     bool onGround;
@@ -23,6 +25,7 @@ public class playerMovement : MonoBehaviour
     void Update()
     {
         scoretxt.text = "" + score;
+        score += Time.deltaTime;
         if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
         {
             
@@ -30,6 +33,17 @@ public class playerMovement : MonoBehaviour
             {
                 rb.velocity = Vector2.up * jumpHeight;
                 onGround = false;
+            }
+        }
+        foreach(Touch touch in Input.touches)
+        {
+            if(touch.phase == TouchPhase.Began)
+            { 
+                if(onGround == true)
+                {
+                    rb.velocity = Vector2.up * jumpHeight;
+                    onGround = false;
+                }
             }
         }
 
@@ -46,7 +60,9 @@ public class playerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "triggerScore")
         {
-            score++;
+            es.addSpeed();
+            eSpawn.addEnemy();
+
         }
     }
 }
