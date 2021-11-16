@@ -5,6 +5,8 @@ using UnityEngine;
 public class enemyScript : MonoBehaviour
 {
     public float speed;
+    private float timer = 0;
+    public float enemyDifficulty = 4;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +17,11 @@ public class enemyScript : MonoBehaviour
     void Update()
     {
         transform.position += Vector3.left * speed * Time.deltaTime;
-    }
-
-    public void addSpeed()
-    {
-        speed *= 2;
+        if(timer > enemyDifficulty)
+        {
+            speed += 1;
+            timer = 0;
+        }
+        timer += Time.deltaTime;
     }
 }
