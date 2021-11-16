@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemySpawner : MonoBehaviour
 {
-    public float maxTime = 1;
+    public float maxTime = 4;
     private float timer = 0;
     public GameObject obstacle;
     // Start is called before the first frame update
@@ -20,14 +20,9 @@ public class enemySpawner : MonoBehaviour
             GameObject newObstacle = Instantiate(obstacle);
             newObstacle.transform.position = transform.position + new Vector3(0, 0, 0 );
             Destroy(newObstacle, 15);
+            maxTime = Random.Range(1,4);
             timer = 0;
         }
         timer += Time.deltaTime;
     }
-
-    public void addEnemy()
-    {
-        maxTime *= 2;
-    }
-    
 }
