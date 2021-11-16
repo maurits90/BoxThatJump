@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class playerMovement : MonoBehaviour
 {
     public gameManager gm;
-    public enemyScript es;
-    public enemySpawner eSpawn;
+    public AudioScript sound;
     Rigidbody2D rb;
     public float jumpHeight;
     bool onGround;
@@ -19,6 +18,7 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        score = 0;
     }
 
     // Update is called once per frame
@@ -33,6 +33,7 @@ public class playerMovement : MonoBehaviour
             {
                 rb.velocity = Vector2.up * jumpHeight;
                 onGround = false;
+                sound.playJump();
             }
         }
         foreach(Touch touch in Input.touches)
@@ -53,16 +54,8 @@ public class playerMovement : MonoBehaviour
         onGround = true;
         if(collision.gameObject.tag == "enemy")
         {
+            sound.playGameOver();
             gm.GameOver();
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "triggerScore")
-        {
-            es.addSpeed();
-            eSpawn.addEnemy();
-
         }
     }
 }
