@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class gameManager : MonoBehaviour
         {
             gameStart();
         }
+
+        GameObject.Find("startButton").GetComponentInChildren<Text>().text = "Start Game";
     }
 
     public void gameStart()
