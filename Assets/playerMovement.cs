@@ -24,7 +24,7 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoretxt.text = "" + score;
+        scoretxt.text = "" + score.ToString("F0");
         score += Time.deltaTime;
         if (Input.GetKeyDown("space") || Input.GetKeyDown("up"))
         {
